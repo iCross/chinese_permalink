@@ -24,7 +24,7 @@ module ChinesePermalink
       end
 
       english_permalink = remove_duplicate_dash(remove_heading_dash(remove_tailing_dash(remove_non_ascii(remove_space(remove_punctuation(english_permalink)))))).downcase
-      self.write_attribute(self.class.permalink_field, english_permalink)
+      self.send("#{self.class.permalink_field.to_s}=", english_permalink)
     end
   end
 
