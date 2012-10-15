@@ -24,7 +24,7 @@ module ChinesePermalink
       end
 
       english_permalink = remove_duplicate_dash(remove_heading_dash(remove_tailing_dash(remove_non_ascii(remove_space(remove_punctuation(english_permalink)))))).downcase
-      self.update_attribute(self.class.permalink_field, english_permalink)
+      self.write_attribute(self.class.permalink_field, english_permalink)
     end
   end
 
@@ -60,7 +60,7 @@ module ChinesePermalink
       self.before_methods = Array(options[:before_methods])
       self.after_methods = Array(options[:after_methods])
 
-      after_save :create_permalink
+      before_save :create_permalink
     end
   end
 
